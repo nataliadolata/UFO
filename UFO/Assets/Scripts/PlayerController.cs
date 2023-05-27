@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
+    public Text scoreText;
+    public Text winText;
     Rigidbody2D rb2d;
     private int count = 0;
     void Start()
@@ -25,7 +30,21 @@ public class PlayerController : MonoBehaviour
         {
             count = count + 1;
             Destroy(collision.gameObject);
+            UpdateScoreText();
         }
 	}
+
+    void UpdateScoreText()
+    {
+        scoreText.text = "Wynik: " + count;
+        if (count == 4)
+        {
+            winText.gameObject.SetActive(true);
+            scoreText.gameObject.SetActive(false);
+            //Thread.Sleep(5000);
+            SceneManager.LoadScene("Level_02");
+        }
+    }
+    
     
 }

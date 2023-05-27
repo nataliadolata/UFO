@@ -41,9 +41,15 @@ public class PlayerController : MonoBehaviour
         {
             winText.gameObject.SetActive(true);
             scoreText.gameObject.SetActive(false);
+            StartCoroutine(StopTime());
             //Thread.Sleep(5000);
-            SceneManager.LoadScene("Level_02");
         }
+    }
+
+    IEnumerator StopTime()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Level_02");
     }
     
     
